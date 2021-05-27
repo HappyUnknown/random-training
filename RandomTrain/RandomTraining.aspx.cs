@@ -13,7 +13,6 @@ namespace RandomTrain
     {
         List<Training> trainings;
         TrainingContext db = new TrainingContext();
-        const char symbol = '•';
         List<Button> editionButtons = new List<Button>();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -138,10 +137,14 @@ namespace RandomTrain
             t.ExtraInfo = tbExtraInfo.Text;
             t.Name = tbName.Text;
             t.Plan = tbPlan.Text;
-            db.Trainings.Add(t);
-            db.SaveChanges();
+            if (tbId.Text.Trim(' ') != string.Empty && tbPlan.Text.Trim(' ') != string.Empty && tbName.Text.Trim(' ') != string.Empty)
+            {
+                db.Trainings.Add(t);
+                db.SaveChanges();
+                ResponseAlert("New element added.");
+            }
+            else ResponseAlert("Input does not match requirements.");
             LoadDb();
-            ResponseAlert("Now the last element is training: " + trainings[trainings.Count - 1].Name + " with id: " + trainings[trainings.Count - 1].Id);
         }
 
         int GetButtonIndex(object sender)
@@ -169,15 +172,16 @@ namespace RandomTrain
 
         protected void btnEdit_Click(object sender, EventArgs e)
         {
-            Training t = trainings.Where(x => x.Id == int.Parse(tbId.Text)).FirstOrDefault();
-            if (tbId.Text.Trim(' ').Length > 0)
+            if (tbId.Text.Trim(' ') != string.Empty && tbPlan.Text.Trim(' ') != string.Empty && tbName.Text.Trim(' ') != string.Empty)
             {
+                Training t = trainings.Where(x => x.Id == int.Parse(tbId.Text)).FirstOrDefault();
                 db.Entry(t).State = System.Data.Entity.EntityState.Modified;
                 t.Name = tbName.Text;
                 t.Author = tbAuthor.Text;
                 t.ExtraInfo = tbExtraInfo.Text;
                 t.Plan = tbPlan.Text;
                 db.SaveChanges();
+                ResponseAlert("Element on ID " + t.Id + " has been updated.");
             }
             else ResponseAlert("The element to edit hasn't been established.");
             LoadDb();
@@ -185,9 +189,9 @@ namespace RandomTrain
 
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            Training t = trainings.Where(x => x.Id == int.Parse(tbId.Text)).FirstOrDefault();
-            if (tbId.Text.Trim(' ').Length > 0)
+            if (tbId.Text.Trim(' ') != string.Empty && tbPlan.Text.Trim(' ') != string.Empty && tbName.Text.Trim(' ') != string.Empty)
             {
+                Training t = trainings.Where(x => x.Id == int.Parse(tbId.Text)).FirstOrDefault();
                 db.Entry(t).State = System.Data.Entity.EntityState.Modified;
                 db.Trainings.Remove(t);
                 db.SaveChanges();

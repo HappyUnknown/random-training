@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title>
+    <link runat="server" rel="icon" href="/favicon.png" type="image/png" />
+    <title>RanPump</title>
     <style type="text/css">
         th, td {
             padding: 15px;
@@ -41,18 +42,38 @@
             border-radius: 10px;
         }
 
-/*            
-    .markButton:hover {
-            background-color: #1AD1A0;
-            }
-*/
         .table {
             background-color: cornflowerblue;
             border-radius: 10px;
             margin: 10px;
-            font-family:Tahoma;
-            color:azure;
+            font-family: Tahoma;
+            color: #52c77d;
+            background-image: url(https://i.pinimg.com/564x/5f/65/f9/5f65f9ba886bfd989c350f88a443fb93.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
         }
+
+        /*body {
+            background-image: url(https://i.pinimg.com/originals/d2/e3/c1/d2e3c1fb3eddcea50f08e124ec935cd2.jpg);
+            background-repeat: no-repeat;
+            background-size:*/ /*100% auto*/ /*cover;
+        }
+
+        @media screen and (min-width:900px) and (max-width:2000px) {
+            body {
+                background-image: url(https://i.pinimg.com/originals/d2/e3/c1/d2e3c1fb3eddcea50f08e124ec935cd2.jpg);
+                background-repeat: no-repeat;
+                background-size:*/ /*100% auto*/ /*cover;
+            }
+        }
+
+        @media screen and (min-width:1px) and (max-width:900px) {
+            body {
+                background-image: url(https://i.redd.it/b9omhdrk6fz31.jpg);
+                background-repeat: no-repeat;
+                background-size:*/ /*auto 100%*/ /*cover;
+            }
+        }*/
 
         .listExcercises {
             background-color: #FFFF00;
@@ -76,7 +97,7 @@
         /*tr:nth-child(even) {background-color: #f2f2f2;}*/
     </style>
 </head>
-<body>
+<body style="background-image: url(https://i.pinimg.com/564x/a5/a2/3b/a5a23b95999b83a1848cd45717a6c320.jpg); background-size: cover; background-repeat: no-repeat;">
     <form id="form1" runat="server">
         <asp:Panel runat="server">
             <div style="display: flex; flex-direction: row">
@@ -104,8 +125,8 @@
                     <asp:TextBox runat="server" ID="tbAuthor" CssClass="entryField" placeholder="Training author name" />
                     <asp:TextBox runat="server" ID="tbExtraInfo" CssClass="entryField" placeholder="Extra info about training" />
                     <asp:Button runat="server" ID="btnAddTraining" Text="Add" CssClass="button" OnClick="btnAddTraining_Click" AutoPostBack="true" />
-                    <asp:Button runat="server" ID="btnEdit" Text="Edit" CssClass="button" OnClick="btnEdit_Click" />
-                    <asp:Button runat="server" ID="btnDelete" Text="Delete" CssClass="button" OnClick="btnDelete_Click" />
+                    <asp:Button runat="server" ID="btnEdit" Text="Edit" CssClass="button" OnClick="btnEdit_Click" AutoPostBack="true" />
+                    <asp:Button runat="server" ID="btnDelete" Text="Delete" CssClass="button" OnClick="btnDelete_Click" AutoPostBack="true" />
                 </div>
             </div>
         </asp:Panel>
