@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="TrainingConnection-Web.config Connection String" description="TrainingConnection Строка подключения в web.config, используемая приложением для доступа к базе данных." defaultValue="workstation id=MangaStoreDB.mssql.somee.com;packet size=4096;user id=VLAD_DAN_SQLLogin_1;pwd=scs8zddudg;data source=MangaStoreDB.mssql.somee.com;persist security info=False;initial catalog=MangaStoreDB" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Tools\\Programming\\Source\ -\ Visual\ Studio\\Author\ Apps\\RandomTrain\\RandomTrain\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='TrainingConnection']/@connectionString" />
+  </parameter>
+</parameters>
