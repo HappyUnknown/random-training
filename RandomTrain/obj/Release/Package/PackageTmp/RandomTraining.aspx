@@ -16,6 +16,8 @@
         .ranForm {
             display: flex;
             flex-direction: column;
+            font-family:Tahoma;
+            color:azure;
             border: solid;
             border-width: 5px;
             border-color: dodgerblue;
@@ -48,7 +50,7 @@
             margin: 10px;
             font-family: Tahoma;
             color: #52c77d;
-            background-image: url(https://i.pinimg.com/564x/5f/65/f9/5f65f9ba886bfd989c350f88a443fb93.jpg);
+            background-image: url(https://i.pinimg.com/564x/a5/a2/3b/a5a23b95999b83a1848cd45717a6c320.jpg);
             background-size: cover;
             background-repeat: no-repeat;
         }
@@ -97,7 +99,7 @@
         /*tr:nth-child(even) {background-color: #f2f2f2;}*/
     </style>
 </head>
-<body style="background-image: url(https://i.pinimg.com/564x/a5/a2/3b/a5a23b95999b83a1848cd45717a6c320.jpg); background-size: cover; background-repeat: no-repeat;">
+<body style="background-image: url(https://i.pinimg.com/564x/5f/65/f9/5f65f9ba886bfd989c350f88a443fb93.jpg); background-size: cover; background-repeat: unset;">
     <form id="form1" runat="server">
         <asp:Panel runat="server">
             <div style="display: flex; flex-direction: row">

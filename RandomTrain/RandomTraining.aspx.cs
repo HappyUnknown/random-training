@@ -81,6 +81,8 @@ namespace RandomTrain
         List<string> BuildList(Training t)
         {
             List<string> liTraining = new List<string>();
+            if (t.Author == string.Empty) t.Author = "Unknown Arnold";
+            if (t.ExtraInfo == string.Empty) t.ExtraInfo = "Nothing more to say";
             liTraining.Add("ID: " + t.Id.ToString());
             liTraining.Add("Name: " + t.Name);
             liTraining.Add("Author: " + t.Author);
@@ -137,7 +139,7 @@ namespace RandomTrain
             t.ExtraInfo = tbExtraInfo.Text;
             t.Name = tbName.Text;
             t.Plan = tbPlan.Text;
-            if (tbId.Text.Trim(' ') != string.Empty && tbPlan.Text.Trim(' ') != string.Empty && tbName.Text.Trim(' ') != string.Empty)
+            if (tbPlan.Text.Trim(' ') != string.Empty && tbName.Text.Trim(' ') != string.Empty)
             {
                 db.Trainings.Add(t);
                 db.SaveChanges();
@@ -195,7 +197,7 @@ namespace RandomTrain
                 db.Entry(t).State = System.Data.Entity.EntityState.Modified;
                 db.Trainings.Remove(t);
                 db.SaveChanges();
-                ResponseAlert("Now length is: " + db.Trainings.Count());
+                ResponseAlert("Plan called \"" + t.Name + "\" is now deleted. Now quantity is: " + db.Trainings.Count());
             }
             else ResponseAlert("The element to remove hasn't been established.");
             LoadDb();
