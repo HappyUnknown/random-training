@@ -122,7 +122,7 @@
                         </asp:TableRow>
                     </asp:Table>
                     <div style="display: flex; flex-direction: row-reverse">
-                        <asp:Button ID="btnBackup" runat="server" CssClass="button" OnClick="btnBackup_Click" />
+                        <asp:Button ID="btnBackup" runat="server" CssClass="button" Style="margin:7px" OnClick="btnBackup_Click" Text="Backup" />
                     </div>
                 </div>
                 <div class="ranForm">

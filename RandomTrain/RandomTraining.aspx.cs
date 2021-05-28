@@ -187,8 +187,6 @@ namespace RandomTrain
 
         protected void btnSetForEdit_Click(object sender, EventArgs e)
         {
-            Button b = sender as Button;
-            ResponseAlert(b.BackColor.A + ";" + b.BackColor.R + ";" + b.BackColor.G + ";" + b.BackColor.B);
             if ((sender as Button).BackColor == Color.FromArgb(1, DBC, DBC, DBC))
             {
                 Training t = trainings[GetButtonIndex(sender)];
@@ -229,7 +227,7 @@ namespace RandomTrain
                 t.Author = tbAuthor.Text;
                 t.Breaks = tbBreaks.Text;
                 t.ExtraInfo = tbExtraInfo.Text;
-                t.Plan = tbPlan.Text;
+                t.Plan = TrimMultiStr(tbPlan.Text);
                 db.SaveChanges();
                 ResponseAlert("Element on ID " + t.Id + " has been updated.");
                 ClearEntityFields();
