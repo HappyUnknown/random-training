@@ -60,13 +60,22 @@ namespace RandomTrain
         protected global::System.Web.UI.WebControls.Table trainingTable;
 
         /// <summary>
-        /// tbId элемент управления.
+        /// btnBackup элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbId;
+        protected global::System.Web.UI.WebControls.Button btnBackup;
+
+        /// <summary>
+        /// lblId элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblId;
 
         /// <summary>
         /// tbName элемент управления.
@@ -85,6 +94,15 @@ namespace RandomTrain
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbPlan;
+
+        /// <summary>
+        /// tbBreaks элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbBreaks;
 
         /// <summary>
         /// tbAuthor элемент управления.

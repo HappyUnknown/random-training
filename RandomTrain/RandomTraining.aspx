@@ -16,8 +16,8 @@
         .ranForm {
             display: flex;
             flex-direction: column;
-            font-family:Tahoma;
-            color:azure;
+            font-family: Tahoma;
+            color: azure;
             border: solid;
             border-width: 5px;
             border-color: dodgerblue;
@@ -109,21 +109,28 @@
                     <asp:Table runat="server" ID="tblPlan" />
                     <asp:Button Text="Get training!" ID="btnGetTraining" CssClass="button" runat="server" OnClick="btnGetTraining_Click" AutoPostBack="true" />
                 </div>
-                <asp:Table ID="trainingTable" runat="server" CssClass="table">
-                    <asp:TableRow>
-                        <asp:TableCell>Id</asp:TableCell>
-                        <asp:TableCell>Name</asp:TableCell>
-                        <asp:TableCell>Plan</asp:TableCell>
-                        <asp:TableCell>Author</asp:TableCell>
-                        <asp:TableCell>ExtraInfo</asp:TableCell>
-                        <asp:TableCell></asp:TableCell>
-                    </asp:TableRow>
-                </asp:Table>
+                <div>
+                    <asp:Table ID="trainingTable" runat="server" CssClass="table">
+                        <asp:TableRow>
+                            <asp:TableCell>Id</asp:TableCell>
+                            <asp:TableCell>Name</asp:TableCell>
+                            <asp:TableCell>Plan</asp:TableCell>
+                            <asp:TableCell>Breaks</asp:TableCell>
+                            <asp:TableCell>Author</asp:TableCell>
+                            <asp:TableCell>ExtraInfo</asp:TableCell>
+                            <asp:TableCell></asp:TableCell>
+                        </asp:TableRow>
+                    </asp:Table>
+                    <div style="display: flex; flex-direction: row-reverse">
+                        <asp:Button ID="btnBackup" runat="server" CssClass="button" OnClick="btnBackup_Click" />
+                    </div>
+                </div>
                 <div class="ranForm">
                     <h1 class="headline">Training view</h1>
-                    <asp:TextBox runat="server" ID="tbId" CssClass="entryField" ReadOnly="true" placeholder="Id" />
+                    <asp:Label runat="server" ID="lblId" CssClass="entryField" placeholder="Id" Text="ID" />
                     <asp:TextBox runat="server" ID="tbName" CssClass="entryField" placeholder="Training name" />
                     <asp:TextBox runat="server" ID="tbPlan" CssClass="entryField" placeholder="Plan text" />
+                    <asp:TextBox runat="server" ID="tbBreaks" CssClass="entryField" placeholder="Breaks duration" />
                     <asp:TextBox runat="server" ID="tbAuthor" CssClass="entryField" placeholder="Training author name" />
                     <asp:TextBox runat="server" ID="tbExtraInfo" CssClass="entryField" placeholder="Extra info about training" />
                     <asp:Button runat="server" ID="btnAddTraining" Text="Add" CssClass="button" OnClick="btnAddTraining_Click" AutoPostBack="true" />

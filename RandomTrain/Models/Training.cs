@@ -14,25 +14,28 @@ namespace RandomTrain.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Plan { get; set; }
+        public string Breaks { get; set; }
         public string Author { get; set; }
         public string ExtraInfo { get; set; }
         public Training()
         {
             Name = "";
             Plan = "";
+            Breaks = "";
             Author = "";
             ExtraInfo = "";
         }
-        public Training(string n = "", string p = "", string a = "", string ei = "")
+        public Training(string n = "", string p = "", string b = "", string a = "", string ei = "")
         {
             Name = n;
             Plan = p;
+            Breaks = b;
             Author = a;
             ExtraInfo = ei;
         }
     }
 }
 /*
-create table trainings(Id int primary key identity,[Name] varchar(max),[Plan] varchar(max),Author nvarchar(max),ExtraInfo varchar(max))
-insert into trainings values('TrainingName','Follow the plan','Taras Shevchenko','Go pump your muscles')
+create table trainings(Id int primary key identity,[Name] varchar(max),[Plan] varchar(max),Breaks varchar(max),Author nvarchar(max),ExtraInfo varchar(max))
+insert into trainings values('TrainingName','Follow the plan','Non-stop','Taras Shevchenko','Go pump your muscles')
 */
