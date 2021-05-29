@@ -15,6 +15,7 @@ namespace RandomTrain.Models
         public string Name { get; set; }
         public string Plan { get; set; }
         public string Breaks { get; set; }
+        public string Muscles { get; set; }
         public string Author { get; set; }
         public string ExtraInfo { get; set; }
         public Training()
@@ -22,14 +23,16 @@ namespace RandomTrain.Models
             Name = "";
             Plan = "";
             Breaks = "";
+            Muscles = "";
             Author = "";
             ExtraInfo = "";
         }
-        public Training(string n = "", string p = "", string b = "", string a = "", string ei = "")
+        public Training(string n = "", string p = "", string b = "", string m = "", string a = "", string ei = "")
         {
             Name = n;
             Plan = p;
             Breaks = b;
+            Muscles = m;
             Author = a;
             ExtraInfo = ei;
         }

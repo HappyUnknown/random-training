@@ -116,6 +116,7 @@
                             <asp:TableCell>Name</asp:TableCell>
                             <asp:TableCell>Plan</asp:TableCell>
                             <asp:TableCell>Breaks</asp:TableCell>
+                            <asp:TableCell>Muscles</asp:TableCell>
                             <asp:TableCell>Author</asp:TableCell>
                             <asp:TableCell>ExtraInfo</asp:TableCell>
                             <asp:TableCell></asp:TableCell>
@@ -131,6 +132,7 @@
                     <asp:TextBox runat="server" ID="tbName" CssClass="entryField" placeholder="Training name" />
                     <asp:TextBox runat="server" ID="tbPlan" CssClass="entryField" placeholder="Plan text" />
                     <asp:TextBox runat="server" ID="tbBreaks" CssClass="entryField" placeholder="Breaks duration" />
+                    <asp:TextBox runat="server" ID="tbMuscles" CssClass="entryField" placeholder="Muscle groups" />
                     <asp:TextBox runat="server" ID="tbAuthor" CssClass="entryField" placeholder="Training author name" />
                     <asp:TextBox runat="server" ID="tbExtraInfo" CssClass="entryField" placeholder="Extra info about training" />
                     <asp:Button runat="server" ID="btnAddTraining" Text="Add" CssClass="button" OnClick="btnAddTraining_Click" AutoPostBack="true" />

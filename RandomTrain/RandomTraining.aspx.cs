@@ -27,12 +27,12 @@ namespace RandomTrain
                 AddRow(trainings[i]);
             }
         }
-        void AddInDb(string Name, string Plan, string Breaks, string Author, string ExtraInfo)
+        void AddInDb(string Name, string Plan, string Breaks, string Muscles, string Author, string ExtraInfo)
         {
             trainings.Add(new Training(Name, Plan, Breaks, Author, ExtraInfo));
             db.SaveChanges();
         }
-        void AddRow(int Id, string Name, string Plan, string Breaks, string Author, string ExtraInfo)
+        void AddRow(int Id, string Name, string Plan, string Breaks, string Muscles, string Author, string ExtraInfo)
         {
             TableRow row = new TableRow();
             Button b = new Button();
@@ -42,14 +42,15 @@ namespace RandomTrain
             b.Height = 25;
             b.CssClass = "markButton";
             b.BackColor = Color.FromArgb(1, 240, 240, 240);
-            TableCell cell1 = new TableCell(), cell2 = new TableCell(), cell3 = new TableCell(), cell4 = new TableCell(), cell5 = new TableCell(), cell6 = new TableCell(), cell7 = new TableCell();
+            TableCell cell1 = new TableCell(), cell2 = new TableCell(), cell3 = new TableCell(), cell4 = new TableCell(), cell5 = new TableCell(), cell6 = new TableCell(), cell7 = new TableCell(), cell8 = new TableCell();
             cell1.Text = Id.ToString();
             cell2.Text = Name.ToString();
             cell3.Text = Plan.ToString();
             cell4.Text = Breaks.ToString();
-            cell5.Text = Author.ToString();
-            cell6.Text = ExtraInfo.ToString();
-            cell7.Controls.Add(b);
+            cell5.Text = Muscles.ToString();
+            cell6.Text = Author.ToString();
+            cell7.Text = ExtraInfo.ToString();
+            cell8.Controls.Add(b);
             row.Cells.Add(cell1);
             row.Cells.Add(cell2);
             row.Cells.Add(cell3);
@@ -57,20 +58,22 @@ namespace RandomTrain
             row.Cells.Add(cell5);
             row.Cells.Add(cell6);
             row.Cells.Add(cell7);
+            row.Cells.Add(cell8);
             trainingTable.Rows.Add(row);
             editionButtons.Add(b);
         }
-        void AddTitle(string idtitle, string nametitle, string plantitle, string breakstitle, string authortitle, string infotitle)
+        void AddTitle(string idtitle, string nametitle, string plantitle, string breakstitle, string muscles, string authortitle, string infotitle)
         {
             TableRow row = new TableRow();
-            TableCell cell1 = new TableCell(), cell2 = new TableCell(), cell3 = new TableCell(), cell4 = new TableCell(), cell5 = new TableCell(), cell6 = new TableCell(), cell7 = new TableCell();
+            TableCell cell1 = new TableCell(), cell2 = new TableCell(), cell3 = new TableCell(), cell4 = new TableCell(), cell5 = new TableCell(), cell6 = new TableCell(), cell7 = new TableCell(), cell8 = new TableCell();
             cell1.Text = idtitle.ToString();
             cell2.Text = nametitle.ToString();
             cell3.Text = plantitle.ToString();
             cell4.Text = breakstitle.ToString();
-            cell5.Text = authortitle.ToString();
-            cell6.Text = infotitle.ToString();
-            cell7.Text = string.Empty;
+            cell5.Text = muscles.ToString();
+            cell6.Text = authortitle.ToString();
+            cell7.Text = infotitle.ToString();
+            cell8.Text = string.Empty;
             row.Cells.Add(cell1);
             row.Cells.Add(cell2);
             row.Cells.Add(cell3);
@@ -78,15 +81,16 @@ namespace RandomTrain
             row.Cells.Add(cell5);
             row.Cells.Add(cell6);
             row.Cells.Add(cell7);
+            row.Cells.Add(cell8);
             trainingTable.Rows.Add(row);
         }
         void AddRow(Training training)
         {
-            AddRow(training.Id, training.Name, training.Plan, training.Breaks, training.Author, training.ExtraInfo);
+            AddRow(training.Id, training.Name, training.Plan, training.Breaks, training.Muscles, training.Author, training.ExtraInfo);
         }
         string BuildStrList(Training t)
         {
-            return "ID:" + t.Id + Environment.NewLine + "Name:" + t.Name + Environment.NewLine + "Plan:" + t.Plan + Environment.NewLine + "Breaks:" + t.Breaks + Environment.NewLine + "Author:" + t.Author + Environment.NewLine + "Extra info:" + t.ExtraInfo;
+            return "ID:" + t.Id + Environment.NewLine + "Name:" + t.Name + Environment.NewLine + "Plan:" + t.Plan + Environment.NewLine + "Breaks:" + t.Muscles + Environment.NewLine + t.Breaks + Environment.NewLine + "Author:" + t.Author + Environment.NewLine + "Extra info:" + t.ExtraInfo;
         }
         List<string> BuildList(Training t)
         {
@@ -94,18 +98,30 @@ namespace RandomTrain
             if (t.Breaks == string.Empty) t.Breaks = "Lesss gooo";
             if (t.Author == string.Empty) t.Author = "Unknown Arnold";
             if (t.ExtraInfo == string.Empty) t.ExtraInfo = "Nothing more to say";
+            if (t.Muscles == string.Empty) t.Muscles = "Random muscles";
             liTraining.Add("ID: " + t.Id.ToString());
             liTraining.Add("Name: " + t.Name);
             liTraining.Add("Breaks: " + t.Breaks);
             liTraining.Add("Author: " + t.Author);
             liTraining.Add("Extra info: " + t.ExtraInfo);
-            liTraining.Add("---PLAN---");
-            string[] plan = t.Plan.Split(';');
-            for (int i = 0; i < plan.Length; i++)
+            if (t.Muscles.Contains(';'))
             {
-                if (plan[i].Trim(' ').Length != 0)
-                    liTraining.Add((i + 1) + ") " + plan[i]);
+                string[] muscles = t.Muscles.Split(';');
+                liTraining.Add("---MUSCLES INFO---");
+                for (int i = 0; i < muscles.Length; i++)
+                    if (muscles[i].Trim(' ').Length != 0)
+                        liTraining.Add((i + 1) + ") " + muscles[i]);
             }
+            else liTraining.Add("Muscles info: " + t.Muscles);
+            if (t.Plan.Contains(';'))
+            {
+                string[] plan = t.Plan.Split(';');
+                liTraining.Add("---PLAN---");
+                for (int i = 0; i < plan.Length; i++)
+                    if (plan[i].Trim(' ').Length != 0)
+                        liTraining.Add((i + 1) + ") " + plan[i]);
+            }
+            else liTraining.Add("Plan: " + t.Plan);
             return liTraining;
         }
         Training RandomTraining()
@@ -125,7 +141,7 @@ namespace RandomTrain
         void UpdateTable()
         {
             trainingTable.Rows.Clear();
-            AddTitle("Id", "Name", "Plan", "Breaks", "Author", "Extra Info");
+            AddTitle("Id", "Name", "Plan", "Breaks", "Muscles", "Author", "Extra Info");
             for (int i = 0; i < trainings.Count; i++)
             {
                 AddRow(trainings[i]);
@@ -134,7 +150,7 @@ namespace RandomTrain
         TrainingContext LoadDb()//Load database to the table
         {
             trainingTable.Rows.Clear();
-            AddTitle("Id", "Name", "Plan", "Breaks", "Author", "Extra Info");
+            AddTitle("Id", "Name", "Plan", "Breaks", "Muscles", "Author", "Extra Info");
             List<Training> trainings;
             TrainingContext db = new TrainingContext();
             trainings = db.Trainings.ToList();
@@ -160,6 +176,7 @@ namespace RandomTrain
             t.Name = tbName.Text;
             t.Breaks = tbBreaks.Text;
             t.Plan = TrimMultiStr(tbPlan.Text);
+            t.Muscles = TrimMultiStr(tbMuscles.Text);
             if (tbPlan.Text.Trim(' ') != string.Empty && tbName.Text.Trim(' ') != string.Empty)
             {
                 db.Trainings.Add(t);
@@ -172,6 +189,7 @@ namespace RandomTrain
             tbName.Text = string.Empty;
             tbPlan.Text = string.Empty;
             tbBreaks.Text = string.Empty;
+            tbMuscles.Text = string.Empty;
             LoadDb();
         }
 
@@ -197,6 +215,7 @@ namespace RandomTrain
                 tbName.Text = t.Name;
                 tbPlan.Text = t.Plan;
                 tbBreaks.Text = t.Breaks;
+                tbMuscles.Text = t.Muscles;
                 tbAuthor.Text = t.Author;
                 tbExtraInfo.Text = t.ExtraInfo;
             }
@@ -214,6 +233,7 @@ namespace RandomTrain
             tbName.Text = string.Empty;
             tbPlan.Text = string.Empty;
             tbBreaks.Text = string.Empty;
+            tbMuscles.Text = string.Empty;
             tbAuthor.Text = string.Empty;
             tbExtraInfo.Text = string.Empty;
         }
@@ -226,6 +246,7 @@ namespace RandomTrain
                 t.Name = tbName.Text;
                 t.Author = tbAuthor.Text;
                 t.Breaks = tbBreaks.Text;
+                t.Muscles = tbMuscles.Text;
                 t.ExtraInfo = tbExtraInfo.Text;
                 t.Plan = TrimMultiStr(tbPlan.Text);
                 db.SaveChanges();
@@ -255,11 +276,11 @@ namespace RandomTrain
         {
             tblPlan.Rows.Clear();
             Training t = RandomTraining();
-            List<string> planParts = BuildList(t);
-            for (int i = 0; i < planParts.Count; i++)
+            List<string> trainingParts = BuildList(t);
+            for (int i = 0; i < trainingParts.Count; i++)
             {
                 TableCell cell = new TableCell();
-                cell.Text = planParts[i];
+                cell.Text = trainingParts[i];
                 TableRow row = new TableRow();
                 row.Cells.Add(cell);
                 tblPlan.Rows.Add(row);
@@ -272,12 +293,13 @@ namespace RandomTrain
         }
         protected void btnBackup_Click(object sender, EventArgs e)
         {
-            string query = "create table trainings(Id int primary key identity,[Name] varchar(max),[Plan] varchar(max),Breaks varchar(max),Author nvarchar(max),ExtraInfo varchar(max))" + Environment.NewLine;
+            string query = "create table trainings(Id int primary key identity,[Name] varchar(max),[Plan] varchar(max),Breaks varchar(max),Muscles varchar(max),Author nvarchar(max),ExtraInfo varchar(max))" + Environment.NewLine;
             for (int i = 0; i < trainings.Count; i++)
             {
-                query += "/*" + trainings[i].Id + "*/ insert into Trainings values('" + trainings[i].Name + "','" + trainings[i].Plan + "','" + trainings[i].Breaks + "','" + trainings[i].Author + "','" + trainings[i].ExtraInfo + "')" + Environment.NewLine;
+                query += "/*" + trainings[i].Id + "*/ insert into Trainings values('" + trainings[i].Name + "','" + trainings[i].Plan + "','" + trainings[i].Breaks + "','" + trainings[i].Muscles + "','" + trainings[i].Author + "','" + trainings[i].ExtraInfo + "')" + Environment.NewLine;
             }
             SendMailMessage(mailAddr, mailAddr, "Trainings backup", query);
+            ResponseAlert("Backup successful.");
         }
         void SendMailMessage(string from, string to, string topic, string message)
         {
