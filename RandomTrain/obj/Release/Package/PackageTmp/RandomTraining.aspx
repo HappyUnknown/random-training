@@ -105,9 +105,9 @@
             <div style="display: flex; flex-direction: row">
                 <div class="ranForm">
                     <h1 class="headline">Randomizing form</h1>
+                    <asp:Button Text="Get training!" ID="btnGetTraining" CssClass="button" runat="server" OnClick="btnGetTraining_Click" AutoPostBack="true" />
                     <asp:Label runat="server" ID="lbExcersizeList" CssClass="list-textbox" />
                     <asp:Table runat="server" ID="tblPlan" />
-                    <asp:Button Text="Get training!" ID="btnGetTraining" CssClass="button" runat="server" OnClick="btnGetTraining_Click" AutoPostBack="true" />
                 </div>
                 <div>
                     <asp:Table ID="trainingTable" runat="server" CssClass="table">
